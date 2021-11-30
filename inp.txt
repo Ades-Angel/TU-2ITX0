@@ -1,0 +1,122 @@
+(declare-const n1 Int)
+(declare-const n2 Int)
+(declare-const n3 Int)
+(declare-const n4 Int)
+(declare-const n5 Int)
+(declare-const n6 Int)
+
+(declare-const p1 Int)
+(declare-const p2 Int)
+(declare-const p3 Int)
+(declare-const p4 Int)
+(declare-const p5 Int)
+(declare-const p6 Int)
+
+(declare-const s1 Int)
+(declare-const s2 Int)
+(declare-const s3 Int)
+(declare-const s4 Int)
+(declare-const s5 Int)
+(declare-const s6 Int)
+
+(declare-const c1 Int)
+(declare-const c2 Int)
+(declare-const c3 Int)
+(declare-const c4 Int)
+(declare-const c5 Int)
+(declare-const c6 Int)
+
+(declare-const d1 Int)
+(declare-const d2 Int)
+(declare-const d3 Int)
+(declare-const d4 Int)
+(declare-const d5 Int)
+(declare-const d6 Int)
+
+(declare-const p Int)
+
+(assert
+(and
+(<= (+ (* 800 n1) (* 1300 p1) (* 1000 s1) (* 1500 c1) (* 400 d1)) 8000)
+(<= (+ (* 800 n2) (* 1300 p2) (* 1000 s2) (* 1500 c2) (* 400 d2)) 8000)
+(<= (+ (* 800 n3) (* 1300 p3) (* 1000 s3) (* 1500 c3) (* 400 d3)) 8000)
+(<= (+ (* 800 n4) (* 1300 p4) (* 1000 s4) (* 1500 c4) (* 400 d4)) 8000)
+(<= (+ (* 800 n5) (* 1300 p5) (* 1000 s5) (* 1500 c5) (* 400 d5)) 8000)
+(<= (+ (* 800 n6) (* 1300 p6) (* 1000 s6) (* 1500 c6) (* 400 d6)) 8000)
+
+; There is a maximum of 8 pallets per truck.
+(<= (+ n2 p2 s2 c2 d2) 8)
+(<= (+ n3 p3 s3 c3 d3) 8)
+(<= (+ n4 p4 s4 c4 d4) 8)
+(<= (+ n5 p5 s5 c5 d5) 8)
+(<= (+ n6 p6 s6 c6 d6) 8)
+
+; Number of pallets for nuzzles, skipples, crottles and dupples.
+(= (+ n1 n2 n3 n4 n5 n6) 4)
+(= (+ s1 s2 s3 s4 s5 s6) 8)
+(= (+ c1 c2 c3 c4 c5 c6) 8)
+(= (+ d1 d2 d3 d4 d5 d6) 12)
+
+(>= n1 0)
+(>= n2 0)
+(>= n3 0)
+(>= n4 0)
+(>= n5 0)
+(>= n6 0)
+
+(>= p1 0)
+(>= p2 0)
+(>= p3 0)
+(>= p4 0)
+(>= p5 0)
+(>= p6 0)
+
+(>= s1 0)
+(>= s2 0)
+(>= s3 0)
+(>= s4 0)
+(>= s5 0)
+(>= s6 0)
+
+(>= c1 0)
+(>= c2 0)
+(>= c3 0)
+(>= c4 0)
+(>= c5 0)
+(>= c6 0)
+
+(>= d1 0)
+(>= d2 0)
+(>= d3 0)
+(>= d4 0)
+(>= d5 0)
+(>= d6 0)
+
+; Only 2 trucks of the six are cooled trucks.
+(= c3 0)
+(= c4 0)
+(= c5 0)
+(= c6 0)
+
+; There can only be one nuzzles per truck.
+(<= n1 1)
+(<= n2 1)
+(<= n3 1)
+(<= n4 1)
+(<= n5 1)
+(<= n6 1)
+
+; Prittles and nuzzles cannont be in the same truck as they are an explosive combination.
+(or (= p1 0 ) (= n1 0))
+(or (= p2 0 ) (= n2 0))
+(or (= p3 0 ) (= n3 0))
+(or (= p4 0 ) (= n4 0))
+(or (= p5 0 ) (= n5 0))
+(or (= p6 0 ) (= n6 0))
+
+(= p (+ p1 p2 p3 p4 p5 p6))
+)
+)
+(maximize p)
+(check-sat)
+(get-model)
