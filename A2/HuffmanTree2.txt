@@ -1,0 +1,68 @@
+; Chloe Antonozzi 1670980
+; Inverse Huffman for ((('U', 1, 'V'), 2, x),5, ('W', 4, ('Y', 3, 'Z')))
+(declare-const U Int)
+(declare-const V Int)
+(declare-const W Int)
+(declare-const X Int)
+(declare-const Y Int)
+(declare-const Z Int)
+(define-const U_len Int 3) ; length of encoding for message ’U’
+(define-const V_len Int 3) ; length of encoding for message ’V’
+(define-const W_len Int 2) ; length of encoding for message ’W’
+(define-const X_len Int 2) ; length of encoding for message ’X’
+(define-const Y_len Int 3) ; length of encoding for message ’Y’
+(define-const Z_len Int 3) ; length of encoding for message ’Z’
+(declare-const avg_code_len Real)
+
+(assert
+(and
+
+(= 100 (+ U V W X Y Z)) ; Must equal to 1,0 which is the same as 100 (since we are using integers)
+(> U 0) ; Each frequency has to be higher than 0
+(> V 0)
+(> W 0)
+(> X 0)
+(> Y 0)
+(> Z 0)
+
+; The first cycle, making sure U and V have the smallest two frequencies
+(<= U W)
+(<= U X)
+(<= U Y)
+(<= U Z)
+(<= V W)
+(<= V X)
+(<= V Y)
+(<= V Z)
+
+; The second cycle, making sure U + V (combined) have smaller frequency than W, Y and z
+(<= (+ U V) W)
+(<= (+ U V) Y)
+(<= (+ U V) Z)
+
+; The thrid cycle, making sure X has a smaller frequency than W,Y and Z
+(<= X Y)
+(<= X Z)
+(<= X W)
+
+; The fourth cycle, making sure U + V + X (combined) have a greater frequency than W,Y and Z
+(>= (+ U V X) W)
+(>= (+ U V X) Y)
+(>= (+ U V X) Z)
+
+; The fifth cycle, making sure Y and Z have smaller frequencies than W and U + V + X (combined)
+(<= Y W)
+(<= Y (+ U V X))
+(<= Z W)
+(<= Z (+ U V X))
+
+; The last cycle, making sure W has a smaller frequency than Y + Z (combined) and U + V + X (combined)
+(<= (+ Y Z) (+ U V X))
+(<= W (+ Y Z))
+(<= W (+ U V X))
+
+(= avg_code_len (/ (+ (* U_len U) (* V_len V) (* W_len W) (* X_len X) (* Y_len Y) (* Z_len Z)) 100))
+))
+(maximize avg_code_len)
+(check-sat)
+(get-model)
