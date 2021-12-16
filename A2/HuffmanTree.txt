@@ -38,7 +38,7 @@
 (= avg_code_len (/ (+ (* A_len A) (* B_len B) (* C_len C) (* D_len D) (* E_len E)) 100))
 
 ))
-(minimize avg_code_len)
+(minimize avg_code_len) ; Change to maximize for the seoncd part of c
 
 (check-sat)
 (get-model)
