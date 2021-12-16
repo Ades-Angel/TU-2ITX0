@@ -63,6 +63,6 @@
 
 (= avg_code_len (/ (+ (* U_len U) (* V_len V) (* W_len W) (* X_len X) (* Y_len Y) (* Z_len Z)) 100))
 ))
-(maximize avg_code_len)
+(minimum avg_code_len) ; Change to maximum for the second part of c
 (check-sat)
 (get-model)
