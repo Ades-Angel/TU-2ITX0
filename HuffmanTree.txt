@@ -1,0 +1,44 @@
+; Chloe Atonozzi 1670980
+; Inverse Huffman for ('A', 4, (('B',2,'C'),3,('D',1,'E')))
+(declare-const A Int)
+(declare-const B Int)
+(declare-const C Int)
+(declare-const D Int)
+(declare-const E Int)
+(define-const A_len Int 1)
+(define-const B_len Int 3)
+(define-const C_len Int 3)
+(define-const D_len Int 3)
+(define-const E_len Int 3) 
+(declare-const avg_code_len Real)
+
+(assert
+(and
+(= 100 (+ A B C D E)) ; Must equal to 1,0 which is the same as 100 (since we are using integers)
+(> A 0) ; Each frequency has to be higher than 0
+(> B 0)
+(> C 0)
+(> D 0)
+(> E 0)
+
+; The first cycle, making sure D and E have the smallest frequencies
+(< D A)
+(< D B)
+(< D C)
+(< E A)
+(< E B)
+(< E C)
+
+; The second cycle, making sure B and C have smaller frequencies than A and D + E (combined)
+(< B A)
+(< B (+ D E))
+(< C A)
+(< C (+ D E))
+
+(= avg_code_len (/ (+ (* A_len A) (* B_len B) (* C_len C) (* D_len D) (* E_len E)) 100))
+
+))
+(minimize avg_code_len)
+
+(check-sat)
+(get-model)
