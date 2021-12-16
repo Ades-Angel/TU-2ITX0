@@ -1,0 +1,35 @@
+wlan-187187:downloads chloeantonozzi$ gpg --verify signature-2122-1.asc.txt LBUI-2122-D.txt
+
+gpg: Signature made Dim  5 déc 21:19:17 2021 CET
+gpg:                using EDDSA key AA631A2865697585C1FEB368A32C53DEFA43931A
+gpg: Good signature from "Tom Verhoeff (For use in the TU/e bachelor course 2ITX0, Applied Logic, 2021-2022) (For educational use) <T.Verhoeff@tue.nl>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: AA63 1A28 6569 7585 C1FE  B368 A32C 53DE FA43 931A
+
+Therefore Signature-2122-1.asc belongs to LBUI-2122-D.txt
+
+
+
+
+
+wlan-187187:downloads chloeantonozzi$ gpg --verify signature-2122-2.asc.txt LBUI-2122-B.txt
+gpg: Signature made Dim  5 déc 21:20:23 2021 CET
+gpg:                using EDDSA key AA631A2865697585C1FEB368A32C53DEFA43931A
+gpg: Good signature from "Tom Verhoeff (For use in the TU/e bachelor course 2ITX0, Applied Logic, 2021-2022) (For educational use) <T.Verhoeff@tue.nl>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: AA63 1A28 6569 7585 C1FE  B368 A32C 53DE FA43 931A
+
+Therefore Signature-2122-2.asc belongs to LBUI-2122-B.txt
+
+
+wlan-187187:downloads chloeantonozzi$ gpg --verify signature-2122-3.asc.txt LBUI-2122-C.txt
+gpg: Signature made Dim  5 déc 21:20:48 2021 CET
+gpg:                using EDDSA key AA631A2865697585C1FEB368A32C53DEFA43931A
+gpg: Good signature from "Tom Verhoeff (For use in the TU/e bachelor course 2ITX0, Applied Logic, 2021-2022) (For educational use) <T.Verhoeff@tue.nl>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: AA63 1A28 6569 7585 C1FE  B368 A32C 53DE FA43 931A
+
+Therefore Signature-2122-3.asc belongs to LBUI-2122-C.txt
